@@ -2,13 +2,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class DataTemplate {
+
     private String dataDesc;
     private String dataName;
     protected HashMap<String, ArrayList<String>> dataValues;
-    public abstract void showOptions();
 
-    public DataTemplate(String dataDesc, String dataName, String workbookName) {
-        this.dataDesc = dataDesc;
+    public DataTemplate(String dataName, String workbookName) {
         this.dataName = dataName;
         dataValues = new HashMap<>();
         try {
@@ -26,4 +25,6 @@ public abstract class DataTemplate {
     public String getDataDesc() {
         return dataDesc;
     }
+
+    public abstract void showOptions();
 }
