@@ -64,7 +64,8 @@ public class Elections2018 extends DataTemplate {
     }
 
     public void candidateInfo(){
-        int totalVotes=0, userCandidate = selectChoice(candidateNames, "candidate")-1;
+        int totalVotes=0;
+        int userCandidate = selectChoice(candidateNames, "candidate");
         for(int i=0; i<dataValues.get("Total").size(); i++) {
             if(dataValues.get("Candidate Name").get(i).equals(candidateNames.get(userCandidate))){
                 totalVotes += Integer.parseInt(dataValues.get("Total").get(i));
@@ -75,7 +76,7 @@ public class Elections2018 extends DataTemplate {
 
     public void contestTitleInfo(){
         int userContestTitle = selectChoice(contestTitles, "contest title");
-        System.out.println("Results for " + contestTitles.get(userContestTitle) + ": ");
+        System.out.println("Results for candidate title" + contestTitles.get(userContestTitle) + ": ");
         for(String candidateName : candidateNames) {
             int totalVotes=0;
             for (int i = 0; i < dataValues.get("Total").size(); i++) {
@@ -97,7 +98,7 @@ public class Elections2018 extends DataTemplate {
     }
 
     public void wardInfo(){
-        String userWard = wards.get(selectChoice(wards, "wards")-1);
+        String userWard = wards.get(selectChoice(wards, "wards"));
         if(userWard.equals("N/A")) {
             userWard = "";
         }
@@ -107,46 +108,70 @@ public class Elections2018 extends DataTemplate {
     }
 
     public void overallInfo(){
-
+        System.out.println("Overall Results of Election 2018:");
+        for(String contestTitle: contestTitles) {
+            System.out.println(contestTitle + ": ");
+            for (String candidateName : candidateNames) {
+                int totalVotes = 0;
+                for (int i = 0; i < dataValues.get("Total").size(); i++) {
+                    if (dataValues.get("Contest Title").get(i).equals(contestTitle) && dataValues.get("Candidate Name").get(i).equals(candidateName)) {
+                        totalVotes += Integer.parseInt(dataValues.get("Total").get(i));
+                    }
+                }
+                if (dataValues.get("Contest Title").get(dataValues.get("Candidate Name").indexOf(candidateName)).equals(contestTitle)){
+                    System.out.println("\t" + candidateName + ": " + totalVotes);
+                }
+            }
+            System.out.println();
+        }
     }
 
     public int selectChoice(ArrayList<String> data, String type){
+        int choice;
         System.out.println("Please select the " + type +" you'd like to view [1-" + data.size() + "]: ");
-        for(int i=1; i<=data.size(); i++){
-            System.out.println("[" + i + "]: " + data.get(i-1));
+        while(true){
+            for(int i=1; i<=data.size(); i++){
+                System.out.println("[" + i + "]: " + data.get(i-1));
+            }
+            choice = input.nextInt();
+            if(choice>0 && choice<data.size()+1){
+                break;
+            }
+            System.out.println("Incorrect input! \nPlease select the " + type +" you'd like to view [1-" + data.size() + "]: ");
         }
-        return Integer.parseInt(input.nextLine());
+
+        return choice-1;
     }
 
-    public void parseData(String searchType, String searchTerm){
+    public void parseData(String arrayType, String searchTerm){
         TempTitle currentTempTitle;
         String testCell = "";
-        for(int i=0; i<dataValues.get(searchType).size(); i++) {
-            if(dataValues.get(searchType).get(i).equals(searchTerm) && !dataValues.get("Contest Title").get(i).equals(testCell)) {
+        for(int i=0; i<dataValues.get(arrayType).size(); i++) {
+            if(dataValues.get(arrayType).get(i).equals(searchTerm) && !dataValues.get("Contest Title").get(i).equals(testCell)) {
                 testCell = dataValues.get("Contest Title").get(i);
                 currentTempTitle = new TempTitle(testCell);
                 tempTitles.add(currentTempTitle);
-                getCandidatesOnQuery(currentTempTitle, testCell, searchType, searchTerm);
+                getCandidatesOnQuery(currentTempTitle, testCell, arrayType, searchTerm);
             }
         }
     }
 
-    public void getCandidatesOnQuery(TempTitle currentTempTitle, String typeTitle, String searchType, String searchTerm){
+    public void getCandidatesOnQuery(TempTitle currentTempTitle, String typeTitle, String arrayType, String searchTerm){
         ArrayList<String> candidateNames = new ArrayList<String>();
         String candidateName;
         for(int i=0; i<dataValues.get("Candidate Name").size(); i++) {
             candidateName = dataValues.get("Candidate Name").get(i);
-            if(!candidateNames.contains(candidateName) && dataValues.get(searchType).get(i).equals(searchTerm) && dataValues.get("Contest Title").get(i).equals(typeTitle)){
+            if(!candidateNames.contains(candidateName) && dataValues.get(arrayType).get(i).equals(searchTerm) && dataValues.get("Contest Title").get(i).equals(typeTitle)){
                 currentTempTitle.addCandidate(candidateName);
                 candidateNames.add(candidateName);
-                getPollResultsOnQuery(currentTempTitle, candidateName, searchType, searchTerm);
+                getPollResultsOnQuery(currentTempTitle, candidateName, arrayType, searchTerm);
             }
         }
     }
 
-    public void getPollResultsOnQuery(TempTitle currentTempTitle, String candidateName, String searchType, String searchTerm){
+    public void getPollResultsOnQuery(TempTitle currentTempTitle, String candidateName, String arrayType, String searchTerm){
         for(int i=0; i<dataValues.get("Candidate Name").size(); i++) {
-            if(dataValues.get(searchType).get(i).equals(searchTerm) && dataValues.get("Candidate Name").get(i).equals(candidateName)){
+            if(dataValues.get(arrayType).get(i).equals(searchTerm) && dataValues.get("Candidate Name").get(i).equals(candidateName)){
                 currentTempTitle.addResults(candidateName, Integer.parseInt(dataValues.get("Total").get(i)));
             }
         }
@@ -162,30 +187,38 @@ public class Elections2018 extends DataTemplate {
 
     @Override
     public void showOptions() {
-        System.out.println("Here are the options to choose from: \n" +
-                "1. Results for a specific candidate\n" +
-                "2. Results for a specific contest titles\n" +
-                "3. Results from a specific polling location\n" +
-                "4. Results from a specific on ward\n" +
-                "5. Overall results of the 2018 election");
-        System.out.print("Which option would you like to select: ");
-        int choice = input.nextInt();
-        switch(choice){
-            case 1:
-                candidateInfo();
-                break;
-            case 2:
-                contestTitleInfo();
-                break;
-            case 3:
-                pollLocationInfo();
-                break;
-            case 4:
-                wardInfo();
-                break;
-            case 5:
-                overallInfo();
-                break;
+        int choice = 0;
+        System.out.println("\nHere are the options to choose from:");
+        while (choice<6) {
+            System.out.println("---------------------------------------------\n" +
+                    "1. Results for a specific candidate\n" +
+                    "2. Results for a specific contest titles\n" +
+                    "3. Results from a specific polling location\n" +
+                    "4. Results from a specific on ward\n" +
+                    "5. Overall results of the 2018 election\n" +
+                    "6. Exit Elections 2018\n"+
+                    "---------------------------------------------");
+            System.out.print("Which option would you like to select: ");
+            choice = input.nextInt();
+            switch (choice) {
+                case 1:
+                    candidateInfo();
+                    break;
+                case 2:
+                    contestTitleInfo();
+                    break;
+                case 3:
+                    pollLocationInfo();
+                    break;
+                case 4:
+                    wardInfo();
+                    break;
+                case 5:
+                    overallInfo();
+                    break;
+                case 6:
+                    break;
+            }
         }
     }
 }

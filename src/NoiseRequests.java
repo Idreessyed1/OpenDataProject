@@ -60,7 +60,7 @@ public class NoiseRequests extends DataTemplate {
         for (int i = 1; i <= 12; i++) getMonth("method", i);
         System.out.println("Here is a brief breakdown of each street for 2019: ");
         for (int i = 0; i < streets.size(); i++){
-            if (!streets.get(i).isEmpty()) getStreet("method", streets.get(i));
+            if (streets.get(i).length() > 1) getStreet("method", streets.get(i));
         }
     }
     public void getWardResults(String requestType, int ward){
@@ -82,7 +82,6 @@ public class NoiseRequests extends DataTemplate {
         String monthName = months[month - 1];
         ArrayList<String> dates = dataValues.get("Created Date");
 
-        ArrayList<Integer> spots = new ArrayList<>();
         int total = 0;
         for (int i = 0; i < dates.size(); i++){
             String[] dateSplit = dates.get(i).split(" ");
@@ -90,16 +89,18 @@ public class NoiseRequests extends DataTemplate {
         }
         if (requestType.equals("user")) System.out.println("In 2019, there were " + total + " noise service request in the month of " + monthName);
         else System.out.println(monthName + ": " + total);
-
     }
 
     public void getStreet(String requestType, String street){
-        String streetName = (street.split(" "))[0].toUpperCase();
+        String streetName = street.toUpperCase();
         ArrayList<String> allStreets = dataValues.get("Street");
         int total = 0;
         for (int i = 0; i < allStreets.size(); i++){
-            if (allStreets.get(i).equals(streetName)){
-                ++total;
+            String currStreet = allStreets.get(i);
+            if (currStreet.length() != 1) {
+                if (streetName.contains(allStreets.get(i))) {
+                    ++total;
+                }
             }
         }
         if (requestType.equals("user")) System.out.println("In 2019, there were total " + total + " noise service requests on " + street);
