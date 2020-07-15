@@ -26,10 +26,6 @@ public class Elections2018 extends DataTemplate {
         getLocations();
     }
 
-    public void getWardInformation(){
-
-    }
-
     public void getCandidateNames(){
         candidateNames.add(dataValues.get("Candidate Name").get(0));
         for(String candidateName : dataValues.get("Candidate Name")) {
@@ -37,7 +33,6 @@ public class Elections2018 extends DataTemplate {
                 candidateNames.add(candidateName);
             }
         }
-        //System.out.println(candidateNames);
     }
 
     public void getWards(){
@@ -95,7 +90,6 @@ public class Elections2018 extends DataTemplate {
         parseData("Poll Name", locationNames.get(userLocation));
         System.out.println("At location " + locationNames.get(userLocation) + " the results were: ");
         printResults();
-
     }
 
     public void parseData(String searchType, String searchTerm){
