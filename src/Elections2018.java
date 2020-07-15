@@ -10,7 +10,6 @@ public class Elections2018 extends DataTemplate {
     private ArrayList<String> contestTitles;
     private ArrayList<String> locationNames;
     private ArrayList<String> wards;
-
     private ArrayList<TempTitle> tempTitles;
 
     public Elections2018(){

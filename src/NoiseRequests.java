@@ -1,10 +1,12 @@
 import java.util.*;
 
 public class NoiseRequests extends DataTemplate {
+
     private String desc = "";
     ArrayList<String> streets = new ArrayList();
     private Scanner sc = new Scanner(System.in);
     private String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+
     public NoiseRequests(){
         super("Noise2019", "Worksheet");
         setDataDesc(desc);
@@ -117,9 +119,9 @@ public class NoiseRequests extends DataTemplate {
 
     public void getHours(){
         String[] hours = {"12 AM", "01 AM", "02 AM", "03 AM", "04 AM", "05 AM", "06 AM", "07 AM", "08 AM", "09 AM", "10 AM", "11 AM", "12 PM", "01 PM", "02 PM", "03 PM", "04 PM", "05 PM", "06 PM", "07 PM", "08 PM", "09 PM", "10 PM", "11 PM", "12 PM"};
-        Thing[] things = new Thing[24];
+        TotalTracker[] totalTrackers = new TotalTracker[24];
         for (int i = 0; i < 24; i++){
-            things[i] = new Thing(hours[i]);
+            totalTrackers[i] = new TotalTracker(hours[i]);
         }
         ArrayList<String> times = dataValues.get("Created Date");
         for (int i = 0; i < times.size(); i++){
@@ -128,33 +130,33 @@ public class NoiseRequests extends DataTemplate {
             String extension = (dateParts[1].split(" "))[1];
             String hour = (dateParts[1].split(":"))[0];
             String trueTime = hour + " " + extension;
-            things[Arrays.asList(hours).indexOf(trueTime)].total += 1;
+            totalTrackers[Arrays.asList(hours).indexOf(trueTime)].total += 1;
         }
-        Arrays.sort(things);
+        Arrays.sort(totalTrackers);
         System.out.println("Here is the breakdown of the noise requests in 2019 by the hour from most to least: ");
         for (int i = 0; i < 24; i++){
-            if (things[i].total == 0) break;
-            System.out.println(things[i]);
+            if (totalTrackers[i].total == 0) break;
+            System.out.println(totalTrackers[i]);
         }
     }
 }
 
-class Thing implements Comparable<Thing>{
+class TotalTracker implements Comparable<TotalTracker>{
     public String name;
     public int total;
-    public Thing(String name){
+    public TotalTracker(String name){
         this.name = name;
         total = 0;
     }
 
     @Override
-    public int compareTo(Thing o) {
+    public int compareTo(TotalTracker o) {
         if (this.total > o.total) return -1;
         else if (this.total < o.total) return 1;
         else return 0;
     }
 
-    public String toString(){
+    public String toString() {
         return name + ": " + total;
     }
 }

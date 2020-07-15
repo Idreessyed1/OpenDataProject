@@ -23,11 +23,12 @@ public abstract class DataTemplate {
         this.dataDesc = description;
     }
 
-    public String getDataName(){
-        return dataName;
-    }
     public String getDataDesc() {
         return dataDesc;
+    }
+
+    public String getDataName(){
+        return dataName;
     }
 
     public abstract void showOptions();
