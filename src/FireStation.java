@@ -13,27 +13,35 @@ public class FireStation extends DataTemplate{
 
     @Override
     public void showOptions() {
-        System.out.println("Here are your options:\n" +
-                "1. Quick summary of the Fire Stations in Windsor\n" +
-                "2. Find the nearest fire station to your location \n");
-        System.out.println("What would you like to view?");
-        int choice = sc.nextInt();
-        switch(choice){
-            case 1:
-                summary();
-                break;
-            case 2:
-                System.out.print("Enter the latitude: ");
-                double lat = sc.nextDouble();
-                System.out.print("Enter the longitude: ");
-                double log = sc.nextDouble();
-                getClosestStation(lat, log);
-                break;
+        int choice = 0;
+        System.out.println("\nHere are the options to choose from:");
+        while (choice<3) {
+            System.out.println("---------------------------------------------------\"\n" +
+                    "1. Quick summary of the Fire Stations in Windsor\n" +
+                    "2. Find the nearest fire station to your location \n" +
+                    "3. Exit Fire Station Database\n" +
+                    "---------------------------------------------------");
+            System.out.println("What would you like to view?");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    summary();
+                    break;
+                case 2:
+                    System.out.print("Enter the latitude: ");
+                    double lat = sc.nextDouble();
+                    System.out.print("Enter the longitude: ");
+                    double log = sc.nextDouble();
+                    getClosestStation(lat, log);
+                    break;
+                case 3:
+                    break;
+            }
         }
     }
 
     public void summary(){
-        ArrayList<String> addresses = new ArrayList<>();
+        ArrayList<String> addresses = dataValues.get("ADDRESS");
         for (int i = 0; i < dataValues.get("FID").size(); i++){
             System.out.println("Fire Station #" + (i + 1));
             System.out.println("Address: " + addresses.get(i) + "\n");

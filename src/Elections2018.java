@@ -221,4 +221,3 @@ public class Elections2018 extends DataTemplate {
         }
     }
 }
-
