@@ -22,6 +22,8 @@ public class MenuInterface {
                     elections2018.showOptions();
                     break;
                 case 2:
+                    FireStation fireStation = new FireStation();
+                    fireStation.showOptions();
                     break;
                 case 3:
                     NoiseRequests noiseRequests = new NoiseRequests();

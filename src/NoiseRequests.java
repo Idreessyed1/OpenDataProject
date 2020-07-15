@@ -18,37 +18,45 @@ public class NoiseRequests extends DataTemplate {
 
     @Override
     public void showOptions() {
-        System.out.println("Here are your options:\n" +
-                "1. Quick summary of the 2019 Noise Service Requests\n" +
-                "2. Display the number of noise service requests for a particular ward\n" +
-                "3. Get the number of noise service requests based on a specific month\n" +
-                "4. Enter a street name and see the number of noise service requests\n" +
-                "5. Get a breakdown of noise service requests by the hour");
-        System.out.println("What would you like to view?");
-        int choice = sc.nextInt();
-        switch(choice){
-            case 1:
-                summary();
-                break;
-            case 2:
-                System.out.print("Enter the ward that you would like to view (1 - 11): ");
-                int ward = sc.nextInt();
-                getWardResults("user", ward);
-                break;
-            case 3:
-                System.out.print("Which month would you like to choose (enter the number associated with the month): ");
-                int month = sc.nextInt();
-                getMonth("user", month);
-                break;
-            case 4:
-                System.out.println("Which street would you like to choose?");
-                sc.nextLine();
-                String street = sc.nextLine();
-                getStreet("user", street);
-                break;
-            case 5:
-                getHours();
-                break;
+        int choice = 0;
+        System.out.println("\nHere are the options to choose from:");
+        while (choice<6) {
+            System.out.println("------------------------------------------------------------------------\n" +
+                    "1. Quick summary of the 2019 Noise Service Requests\n" +
+                    "2. Display the number of noise service requests for a particular ward\n" +
+                    "3. Get the number of noise service requests based on a specific month\n" +
+                    "4. Enter a street name and see the number of noise service requests\n" +
+                    "5. Get a breakdown of noise service requests by the hour\n" +
+                    "6. Exit Noise Service Requests\n" +
+                    "------------------------------------------------------------------------");
+            System.out.println("What would you like to view?");
+            choice = sc.nextInt();
+            switch (choice) {
+                case 1:
+                    summary();
+                    break;
+                case 2:
+                    System.out.print("Enter the ward that you would like to view (1 - 11): ");
+                    int ward = sc.nextInt();
+                    getWardResults("user", ward);
+                    break;
+                case 3:
+                    System.out.print("Which month would you like to choose (enter the number associated with the month): ");
+                    int month = sc.nextInt();
+                    getMonth("user", month);
+                    break;
+                case 4:
+                    System.out.println("Which street would you like to choose?");
+                    sc.nextLine();
+                    String street = sc.nextLine();
+                    getStreet("user", street);
+                    break;
+                case 5:
+                    getHours();
+                    break;
+                case 6:
+                    break;
+            }
         }
     }
 

@@ -1,8 +1,8 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 import java.lang.Math;
 
 public class FireStation extends DataTemplate{
+
     private String desc = "";
     private Scanner sc = new Scanner(System.in);
 
@@ -10,7 +10,6 @@ public class FireStation extends DataTemplate{
         super("FireStations", "Worksheet");
         setDataDesc(desc);
     }
-
 
     @Override
     public void showOptions() {

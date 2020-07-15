@@ -139,7 +139,6 @@ public class Elections2018 extends DataTemplate {
             }
             System.out.println("Incorrect input! \nPlease select the " + type +" you'd like to view [1-" + data.size() + "]: ");
         }
-
         return choice-1;
     }
 
@@ -198,7 +197,7 @@ public class Elections2018 extends DataTemplate {
                     "5. Overall results of the 2018 election\n" +
                     "6. Exit Elections 2018\n"+
                     "---------------------------------------------");
-            System.out.print("Which option would you like to select: ");
+            System.out.println("What would you like to view?");
             choice = input.nextInt();
             switch (choice) {
                 case 1:
