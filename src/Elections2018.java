@@ -1,11 +1,9 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Elections2018 extends DataTemplate {
 
     private Scanner input;
-
     private ArrayList<String> candidateNames;
     private ArrayList<String> contestTitles;
     private ArrayList<String> locationNames;

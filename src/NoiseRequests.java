@@ -3,13 +3,15 @@ import java.util.*;
 public class NoiseRequests extends DataTemplate {
 
     private String desc = "";
-    ArrayList<String> streets = new ArrayList();
-    private Scanner sc = new Scanner(System.in);
+    private ArrayList<String> streets;
+    private Scanner sc;
     private String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
 
     public NoiseRequests(){
         super("Noise2019", "Worksheet");
         setDataDesc(desc);
+        streets = new ArrayList();
+        sc = new Scanner(System.in);
         ArrayList<String> str = dataValues.get("Street");
         for (int i = 0; i < str.size(); i++){
             if (!streets.contains(str.get(i))){
@@ -73,6 +75,7 @@ public class NoiseRequests extends DataTemplate {
             if (streets.get(i).length() > 1) getStreet("method", streets.get(i));
         }
     }
+
     public void getWardResults(String requestType, int ward){
         String wardName = "WARD " + ward;
         ArrayList<String> wards = dataValues.get("Ward");
@@ -91,7 +94,6 @@ public class NoiseRequests extends DataTemplate {
     public void getMonth(String requestType, int month){
         String monthName = months[month - 1];
         ArrayList<String> dates = dataValues.get("Created Date");
-
         int total = 0;
         for (int i = 0; i < dates.size(); i++){
             String[] dateSplit = dates.get(i).split(" ");
@@ -142,8 +144,10 @@ public class NoiseRequests extends DataTemplate {
 }
 
 class TotalTracker implements Comparable<TotalTracker>{
+
     public String name;
     public int total;
+    
     public TotalTracker(String name){
         this.name = name;
         total = 0;
