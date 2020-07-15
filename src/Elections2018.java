@@ -14,6 +14,7 @@ public class Elections2018 extends DataTemplate {
 
     public Elections2018(){
         super("Elections2018", "Worksheet");
+        setDataDesc("Description");
         input = new Scanner(System.in);
 
         candidateNames = new ArrayList<String>();

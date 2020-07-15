@@ -19,6 +19,10 @@ public abstract class DataTemplate {
         }
     }
 
+    public void setDataDesc(String description){
+        this.dataDesc = description;
+    }
+
     public String getDataName(){
         return dataName;
     }
