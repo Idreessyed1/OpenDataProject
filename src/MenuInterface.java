@@ -17,6 +17,13 @@ public class MenuInterface {
             case 1:
                 Elections2018 elections2018 = new Elections2018();
                 elections2018.showOptions();
+                break;
+            case 3:
+                NoiseRequests noiseRequests = new NoiseRequests();
+                noiseRequests.showOptions();
+                break;
+            case 4:
+                break;
         }
     }
 }

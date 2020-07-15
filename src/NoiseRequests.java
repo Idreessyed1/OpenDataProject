@@ -19,7 +19,7 @@ public class NoiseRequests extends DataTemplate {
     @Override
     public void showOptions() {
         System.out.println("Here are your options:\n" +
-                "1. Quick summary of the 2019 Noise Service Requests" +
+                "1. Quick summary of the 2019 Noise Service Requests\n" +
                 "2. Display the number of noise service requests for a particular ward\n" +
                 "3. Get the number of noise service requests based on a specific month\n" +
                 "4. Enter a street name and see the number of noise service requests\n" +
@@ -60,7 +60,7 @@ public class NoiseRequests extends DataTemplate {
         for (int i = 1; i <= 12; i++) getMonth("method", i);
         System.out.println("Here is a brief breakdown of each street for 2019: ");
         for (int i = 0; i < streets.size(); i++){
-            if (!streets.get(i).isBlank()) getStreet("method", streets.get(i));
+            if (!streets.get(i).isEmpty()) getStreet("method", streets.get(i));
         }
     }
     public void getWardResults(String requestType, int ward){
