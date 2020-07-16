@@ -147,7 +147,7 @@ class TotalTracker implements Comparable<TotalTracker>{
 
     public String name;
     public int total;
-    
+
     public TotalTracker(String name){
         this.name = name;
         total = 0;
