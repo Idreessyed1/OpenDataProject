@@ -1,11 +1,14 @@
 import java.util.*;
 import java.lang.Math;
 
+//This method controls the FireStations database. This is a very basic database with only 7 lines in it, so there
+//is not much for the user that it can provide
 public class FireStation extends DataTemplate{
 
     private String desc = "";
     private Scanner sc = new Scanner(System.in);
 
+    //Contructor with the same logic as the NoiseRequests one
     public FireStation(){
         super("FireStations", "Worksheet");
         setDataDesc(desc);
@@ -40,6 +43,7 @@ public class FireStation extends DataTemplate{
         }
     }
 
+    //This method provides a very brief summary of each fire station in Windsor and its address
     public void summary(){
         ArrayList<String> addresses = dataValues.get("ADDRESS");
         for (int i = 0; i < dataValues.get("FID").size(); i++){
@@ -48,12 +52,18 @@ public class FireStation extends DataTemplate{
         }
     }
 
+    //This method takes latitude and longitutde from the user and outputs the closest firestation to the user's location
     public void getClosestStation(double lat, double log){
         ArrayList<String> latitudes = dataValues.get("Y");
         ArrayList<String> longitudes = dataValues.get("X");
         ArrayList<String> fids = dataValues.get("FID");
         int minIndex = -1;
         double minDist = 0;
+        /*
+        In this for loop, we are going through each fire station in the FireStations database and calculating
+        the distance between the latitude and longitude entered by the user and the latitude and longitude of fire station
+        using the Haversine formula to calculate distance between latitude and longitude points
+         */
         for (int i = 0; i < latitudes.size(); i++){
             double currLat = Double.parseDouble(latitudes.get(i));
             double currLong = Double.parseDouble(longitudes.get(i));
@@ -73,6 +83,6 @@ public class FireStation extends DataTemplate{
                 }
             }
         }
-        System.out.println("Closest fire station is fire station #" + fids.get(minIndex));
+        System.out.println("Closest fire station is fire station #" + fids.get(minIndex) + "\nAddress: " + dataValues.get("ADDRESS").get(minIndex));
     }
 }
