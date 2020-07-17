@@ -14,6 +14,7 @@ public class FireStation extends DataTemplate{
         setDataDesc(desc);
     }
 
+    //Prints the options the user can select
     @Override
     public void showOptions() {
         int choice = 0;
@@ -25,17 +26,17 @@ public class FireStation extends DataTemplate{
                     "3. Exit Fire Station Database\n" +
                     "---------------------------------------------------");
             System.out.println("What would you like to view?");
-            choice = sc.nextInt();
+            choice = sc.nextInt(); //Getting input from the user
             switch (choice) {
                 case 1:
                     summary();
                     break;
                 case 2:
-                    System.out.print("Enter the latitude: ");
+                    System.out.print("Enter the latitude: "); //Asking the user for latitude
                     double lat = sc.nextDouble();
-                    System.out.print("Enter the longitude: ");
+                    System.out.print("Enter the longitude: "); //Asking the user for longitude
                     double log = sc.nextDouble();
-                    getClosestStation(lat, log);
+                    getClosestStation(lat, log); //Calling the getClosetStation method
                     break;
                 case 3:
                     break;
