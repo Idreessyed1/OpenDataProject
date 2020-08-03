@@ -1,3 +1,4 @@
+import javax.xml.crypto.Data;
 import java.util.Scanner;
 
 public class MenuInterface {
@@ -7,10 +8,10 @@ public class MenuInterface {
 
     //This method will display the menu two the user
     //It will keep looping until 4 is entered
-    public void menuControl(){
+    public void menuControl() {
         Scanner sc = new Scanner(System.in); //System.in is a standard input stream.
         int choice = 0;
-        while(choice<4) {
+        while (choice < 4) {
             System.out.println("Here are the databases that you can choose from: \n" +
                     "1. Elections 2018\n" +
                     "2. Fire Stations\n" +
@@ -36,5 +37,9 @@ public class MenuInterface {
                     break;
             }
         }
+    }
+
+    public void showDataBaseOptions(DataTemplate dataTemplate){
+        //dataTemplate.show
     }
 }
