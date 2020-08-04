@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
+
 import org.json.simple.*;
 
 public class Elections2018 extends DataTemplate {
@@ -80,18 +80,19 @@ public class Elections2018 extends DataTemplate {
         }
         //Prints the total to the user
         System.out.println("Total votes of " + candidateNames.get(userCandidate) + " is " + totalVotes);
-        /*jsonContructor.addJSONObject("Candidate Name", candidateNames.get(userCandidate));
-        jsonContructor.addJSONObject("Votes", Integer.toString(totalVotes));
-        jsonContructor.writeToFile("Candidate Info");*/
+        JSONObject candidateInfoJSON = jsonContructor.createJSONObject();
+        jsonContructor.putJSONObject(candidateInfoJSON, "Candidate Name", candidateNames.get(userCandidate));
+        jsonContructor.putJSONObject(candidateInfoJSON, "Votes", Integer.toString(totalVotes));
+        jsonContructor.writeToFile(candidateInfoJSON, "Candidate_Info");
     }
 
     //Extracts the results of each contest title
     public void contestTitleInfo(){
         int userContestTitle = selectChoice(contestTitles, "contest title");
         System.out.println("Results for candidate title: " + contestTitles.get(userContestTitle) + ": ");
-        JSONObject mainJsonObject = jsonContructor.createJSONObject();
-        JSONArray jsonArray = jsonContructor.createJSONArray();
-        jsonContructor.putJSONObject(mainJsonObject, jsonArray, contestTitles.get(userContestTitle));
+        JSONObject contestTitleJSON = jsonContructor.createJSONObject();
+        JSONArray contestArrayJSON = jsonContructor.createJSONArray();
+        jsonContructor.putJSONObject(contestTitleJSON, contestArrayJSON, contestTitles.get(userContestTitle));
         for(String candidateName : candidateNames) {//Going through each candidate name
             int totalVotes=0;
             for (int i = 0; i < dataValues.get("Total").size(); i++) { //Looping through the results of each candidate
@@ -103,13 +104,10 @@ public class Elections2018 extends DataTemplate {
             //Print the total votes
             if(dataValues.get("Contest Title").get(dataValues.get("Candidate Name").indexOf(candidateName)).equals(contestTitles.get(userContestTitle))){
                 System.out.println(candidateName + ": " + totalVotes);
-                JSONObject jsonObject = jsonContructor.createJSONObject();
-                jsonContructor.putJSONObject(jsonObject,"Candidate Name", candidateName);
-                jsonContructor.putJSONObject(jsonObject, "Votes", Integer.toString(totalVotes));
-                jsonContructor.addToJSONArray(jsonArray, jsonObject);
+                addCandidateInfoToJSON(contestArrayJSON, candidateName, Integer.toString(totalVotes));
             }
         }
-        jsonContructor.writeToFile(mainJsonObject,"Contest Title Info");
+        jsonContructor.writeToFile(contestTitleJSON,"Contest_Title_Info");
     }
 
     //Extracts information based on the poll location
@@ -117,7 +115,7 @@ public class Elections2018 extends DataTemplate {
         int userLocation = selectChoice(locationNames, "polling location");
         parseData("Poll Name", locationNames.get(userLocation));
         System.out.println("At location " + locationNames.get(userLocation) + " the results were: ");
-        printResults();
+        printResults("Polling_Location_Info");
     }
 
     //Extracts the ward info
@@ -128,14 +126,19 @@ public class Elections2018 extends DataTemplate {
         }
         parseData("Ward", userWard);
         System.out.println("In ward " + userWard + " the results were: ");
-        printResults();
+        printResults("Ward_Info");
     }
 
     //prints the overall database
     public void overallInfo(){
+        int j=0;
+        JSONObject mainObject = jsonContructor.createJSONObject();
         System.out.println("Overall Results of Election 2018:");
         for(String contestTitle: contestTitles) { //looping through contest titles
+            JSONObject contestObjectJSON = jsonContructor.createJSONObject();
             System.out.println(contestTitle + ": ");
+            jsonContructor.putJSONObject(contestObjectJSON, "Contest Title", contestTitle);
+            JSONArray contestArrayJSON = jsonContructor.createJSONArray();
             for (String candidateName : candidateNames) {//Based on the contest titles get the candidates name
                 int totalVotes = 0;
                 for (int i = 0; i < dataValues.get("Total").size(); i++) {//Adding the votes of each candidate
@@ -146,10 +149,15 @@ public class Elections2018 extends DataTemplate {
                 //Printing total votes of each candidate
                 if (dataValues.get("Contest Title").get(dataValues.get("Candidate Name").indexOf(candidateName)).equals(contestTitle)){
                     System.out.println("\t" + candidateName + ": " + totalVotes);
+                    addCandidateInfoToJSON(contestArrayJSON, candidateName, Integer.toString(totalVotes));
                 }
             }
+            j++;
+            jsonContructor.putJSONObject(contestObjectJSON, contestArrayJSON, "Results");
+            jsonContructor.putJSONObject(mainObject, contestObjectJSON, "Contest Title "  + j);
             System.out.println();
         }
+        jsonContructor.writeToFile(mainObject, "Overall_Info");
     }
 
     //This methods will print an array list a user can select the choice
@@ -207,12 +215,33 @@ public class Elections2018 extends DataTemplate {
     }
 
     //prints the HashMap of each TempTitle
-    public void printResults(){
+    public void printResults(String name){
+        int i=0;
+        JSONObject mainObject = jsonContructor.createJSONObject();
         for(TempTitle tempTitle: tempTitles){
+            i++;
             System.out.println(tempTitle.getName() + ": ");
-            tempTitle.getHashMap().forEach((key, value) -> System.out.println("\t" +key + ": " + value));
+            JSONObject contestObjectJSON = jsonContructor.createJSONObject();
+            JSONArray contestArrayJSON = jsonContructor.createJSONArray();
+            jsonContructor.putJSONObject(contestObjectJSON, contestArrayJSON, "Results");
+            tempTitle.getHashMap().entrySet().stream().forEachOrdered((entry) -> {
+                String currentKey = entry.getKey();
+                Integer currentValue = entry.getValue();
+                System.out.println("\t" +currentKey + ": " + currentValue);
+                addCandidateInfoToJSON(contestArrayJSON, currentKey, Integer.toString(currentValue));
+            });
+            jsonContructor.putJSONObject(contestObjectJSON, "Contest Title", tempTitle.getName());
+            jsonContructor.putJSONObject(mainObject, contestObjectJSON, "Contest Title " + i);
             System.out.println();
         }
+        jsonContructor.writeToFile(mainObject, name);
+    }
+
+    public void addCandidateInfoToJSON(JSONArray contestArrayJSON, String candidateName, String votes){
+        JSONObject candidateObjectJSON = jsonContructor.createJSONObject();
+        jsonContructor.putJSONObject(candidateObjectJSON,"Candidate Name", candidateName);
+        jsonContructor.putJSONObject(candidateObjectJSON, "Votes", votes);
+        jsonContructor.addToJSONArray(contestArrayJSON, candidateObjectJSON);
     }
 
     @Override

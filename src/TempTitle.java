@@ -25,7 +25,7 @@ public class TempTitle {
     }
 
     //Returns the HashMap
-    public HashMap getHashMap(){
+    public HashMap<String, Integer> getHashMap(){
         return results;
     }
 }

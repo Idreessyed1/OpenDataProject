@@ -14,13 +14,17 @@ public class JSONContructor {
         return jsonObject;
     }
 
-    public JSONObject putJSONObject(JSONObject jsonObject, String data1, String data2){
-        jsonObject.put(data1, data2);
+    public JSONObject putJSONObject(JSONObject jsonObject, String key, String value){
+        jsonObject.put(key, value);
         return jsonObject;
     }
 
     public void putJSONObject(JSONObject jsonObject, JSONArray jsonArray, String arrayName){
         jsonObject.put(arrayName, jsonArray);
+    }
+
+    public void putJSONObject(JSONObject jsonObject, JSONObject jsonObject2, String arrayName){
+        jsonObject.put(arrayName, jsonObject2);
     }
 
     public JSONArray createJSONArray(){
@@ -30,6 +34,10 @@ public class JSONContructor {
 
     public void addToJSONArray(JSONArray jsonArray, JSONObject jsonObject){
         jsonArray.add(jsonObject);
+    }
+
+    public void addToJSONArray(JSONArray jsonArray, JSONArray additionalJSONArray){
+        jsonArray.add(additionalJSONArray);
     }
 
     public void addToJSONArray(JSONArray jsonArray, String data){

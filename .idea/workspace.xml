@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4bcda545-70e3-489f-990f-bebbd2950a06" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/MenuInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/MenuInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contest Title Info.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Elections2018.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Elections2018.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MenuInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JSONContructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSONContructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TempTitle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TempTitle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +85,8 @@
       <workItem from="1594951016779" duration="1248000" />
       <workItem from="1596052646553" duration="5026000" />
       <workItem from="1596138106270" duration="860000" />
-      <workItem from="1596480085064" duration="8561000" />
+      <workItem from="1596480085064" duration="9751000" />
+      <workItem from="1596565809695" duration="7703000" />
     </task>
     <servers />
   </component>
@@ -109,22 +110,22 @@
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="422" y="103" key="FileChooserDialogImpl/0.0.1280.690@0.0.1280.690" timestamp="1596482970637" />
-    <state width="1238" height="233" key="GridCell.Tab.0.bottom" timestamp="1596491627884">
+    <state width="1238" height="517" key="GridCell.Tab.0.bottom" timestamp="1596573418734">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="233" key="GridCell.Tab.0.bottom/0.0.1280.690@0.0.1280.690" timestamp="1596491627884" />
-    <state width="1238" height="233" key="GridCell.Tab.0.center" timestamp="1596491627884">
+    <state width="1238" height="517" key="GridCell.Tab.0.bottom/0.0.1280.690@0.0.1280.690" timestamp="1596573418734" />
+    <state width="1238" height="517" key="GridCell.Tab.0.center" timestamp="1596573418734">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="233" key="GridCell.Tab.0.center/0.0.1280.690@0.0.1280.690" timestamp="1596491627884" />
-    <state width="1238" height="233" key="GridCell.Tab.0.left" timestamp="1596491627884">
+    <state width="1238" height="517" key="GridCell.Tab.0.center/0.0.1280.690@0.0.1280.690" timestamp="1596573418734" />
+    <state width="1238" height="517" key="GridCell.Tab.0.left" timestamp="1596573418734">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="233" key="GridCell.Tab.0.left/0.0.1280.690@0.0.1280.690" timestamp="1596491627884" />
-    <state width="1238" height="233" key="GridCell.Tab.0.right" timestamp="1596491627884">
+    <state width="1238" height="517" key="GridCell.Tab.0.left/0.0.1280.690@0.0.1280.690" timestamp="1596573418734" />
+    <state width="1238" height="517" key="GridCell.Tab.0.right" timestamp="1596573418734">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="233" key="GridCell.Tab.0.right/0.0.1280.690@0.0.1280.690" timestamp="1596491627884" />
+    <state width="1238" height="517" key="GridCell.Tab.0.right/0.0.1280.690@0.0.1280.690" timestamp="1596573418734" />
     <state x="211" y="68" key="RollbackChangesDialog" timestamp="1594853268681">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
