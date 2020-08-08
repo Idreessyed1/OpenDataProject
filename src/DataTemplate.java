@@ -7,11 +7,13 @@ public abstract class DataTemplate {
 
     private String dataDesc; //The description of the current database
     private String dataName; //The name of the current database
+    protected boolean userView;
     protected HashMap<String, ArrayList<String>> dataValues; //All the values extracted from the database
 
     //Constructor that takes in the database name and the name of the workbook inside of the database
-    public DataTemplate(String dataName, String workbookName) {
+    public DataTemplate(String dataName, String workbookName, boolean userView) {
         this.dataName = dataName;
+        this.userView = userView;
         dataValues = new HashMap<>();
         try {
             Extractor e = new Extractor(dataName, workbookName); //Calls on the Extract to extract info from the specified database

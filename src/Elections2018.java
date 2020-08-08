@@ -1,5 +1,4 @@
 import java.util.*;
-
 import org.json.simple.*;
 
 public class Elections2018 extends DataTemplate {
@@ -12,8 +11,8 @@ public class Elections2018 extends DataTemplate {
     private ArrayList<String> wards;
     private ArrayList<TempTitle> tempTitles;
 
-    public Elections2018(){
-        super("Elections2018", "Worksheet"); //calling the constructor of data values
+    public Elections2018(boolean userView){
+        super("Elections2018", "Worksheet", userView); //calling the constructor of data values
         setDataDesc("Description");
         input = new Scanner(System.in);
         candidateNames = new ArrayList<String>();

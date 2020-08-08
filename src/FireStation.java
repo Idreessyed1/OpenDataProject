@@ -1,5 +1,6 @@
 import java.util.*;
 import java.lang.Math;
+import org.json.simple.*;
 
 //This method controls the FireStations database. This is a very basic database with only 7 lines in it, so there
 //is not much for the user that it can provide
@@ -7,10 +8,12 @@ public class FireStation extends DataTemplate{
 
     private String desc = "";
     private Scanner sc = new Scanner(System.in);
+    private JSONContructor jsonContructor;
 
     //Contructor with the same logic as the NoiseRequests one
-    public FireStation(){
-        super("FireStations", "Worksheet");
+    public FireStation(boolean userView){
+        super("FireStations", "Worksheet", userView);
+        jsonContructor = new JSONContructor();
         setDataDesc(desc);
     }
 
@@ -47,9 +50,22 @@ public class FireStation extends DataTemplate{
     //This method provides a very brief summary of each fire station in Windsor and its address
     public void summary(){
         ArrayList<String> addresses = dataValues.get("ADDRESS");
+        JSONObject mainObject = jsonContructor.createJSONObject();
+        JSONArray mainArray = jsonContructor.createJSONArray();
+        jsonContructor.putJSONObject(mainObject, mainArray, "Fire Stations");
         for (int i = 0; i < dataValues.get("FID").size(); i++){
-            System.out.println("Fire Station #" + (i + 1));
-            System.out.println("Address: " + addresses.get(i) + "\n");
+            if(userView == true) {
+                System.out.println("Fire Station #" + (i + 1));
+                System.out.println("Address: " + addresses.get(i) + "\n");
+            }
+            JSONObject fireStationObject = jsonContructor.createJSONObject();
+            jsonContructor.putJSONObject(fireStationObject, "Fire Station", Integer.toString(i+1));
+            jsonContructor.putJSONObject(fireStationObject, "Address", addresses.get(i));
+            jsonContructor.addToJSONArray(mainArray, fireStationObject);
+        }
+        if(userView==false){
+            jsonContructor.writeToFile(mainObject, "Fire_Station_Summery");
+            System.out.println("JSON file created");
         }
     }
 
@@ -84,6 +100,16 @@ public class FireStation extends DataTemplate{
                 }
             }
         }
-        System.out.println("Closest fire station is fire station #" + fids.get(minIndex) + "\nAddress: " + dataValues.get("ADDRESS").get(minIndex));
+        JSONObject mainObject = jsonContructor.createJSONObject();
+        jsonContructor.putJSONObject(mainObject, "Fire Station", fids.get(minIndex));
+        jsonContructor.putJSONObject(mainObject, "Address", dataValues.get("ADDRESS").get(minIndex));
+
+        if(userView == true){
+            System.out.println("Closest fire station is fire station #" + fids.get(minIndex) + "\nAddress: " + dataValues.get("ADDRESS").get(minIndex));
+        }
+        else{
+            jsonContructor.writeToFile(mainObject, "Closest_Fire_Station");
+            System.out.println("JSON file created");
+        }
     }
 }

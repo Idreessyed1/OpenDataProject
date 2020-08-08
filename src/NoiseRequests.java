@@ -19,8 +19,8 @@ public class NoiseRequests extends DataTemplate {
     private String[] hours = {"12 AM", "01 AM", "02 AM", "03 AM", "04 AM", "05 AM", "06 AM", "07 AM", "08 AM", "09 AM", "10 AM", "11 AM", "12 PM", "01 PM", "02 PM", "03 PM", "04 PM", "05 PM", "06 PM", "07 PM", "08 PM", "09 PM", "10 PM", "11 PM", "12 PM"};
 
 
-    public NoiseRequests(){
-        super("Noise2019", "Worksheet");
+    public NoiseRequests(boolean userView){
+        super("Noise2019", "Worksheet", userView);
         /*
         The reason why we call setDataDesc instead of just passing the description into the constructor was because
         of a bug we ran into. When we would pass the description from this class in the constructor, we would get an
