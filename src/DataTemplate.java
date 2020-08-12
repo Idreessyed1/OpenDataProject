@@ -14,7 +14,7 @@ public abstract class DataTemplate {
     public DataTemplate(String dataName, String workbookName, boolean userView) {
         this.dataName = dataName;
         this.userView = userView;
-        dataValues = new HashMap<>();
+        this.dataValues = new HashMap<>();
         try {
             Extractor e = new Extractor(dataName, workbookName); //Calls on the Extract to extract info from the specified database
             dataValues = e.extractInfo();
@@ -29,6 +29,10 @@ public abstract class DataTemplate {
         this.dataDesc = description;
     }
 
+    public void setDataName(String dataName) {
+        this.dataName = dataName;
+    }
+
     public String getDataDesc() {
         return dataDesc;
     }
@@ -36,6 +40,7 @@ public abstract class DataTemplate {
     public String getDataName(){
         return dataName;
     }
+
 
     //The abstract method that each of the databases will implement. This method will display all the
     //possible data that the user can extract from the database they they can then choose from

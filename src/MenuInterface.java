@@ -21,11 +21,11 @@ public class MenuInterface {
             switch (choice) {
                 case 1:
                     userView = true;
-                    menuControl();
+                    chooseDataBase();
                     break;
                 case 2:
                     userView = false;
-                    menuControl();
+                    chooseDataBase();
                 case 3:
                     System.out.println("Have a good day!"); //Exits the program
                     break;
@@ -35,7 +35,7 @@ public class MenuInterface {
 
     //This method will display the menu two the user
     //It will keep looping until 4 is entered
-    public void menuControl() {
+    public void chooseDataBase() {
         Scanner sc = new Scanner(System.in); //System.in is a standard input stream.
         int choice = 0;
         while (choice < 4) {
@@ -63,9 +63,5 @@ public class MenuInterface {
                     break;
             }
         }
-    }
-
-    public void showDataBaseOptions(DataTemplate dataTemplate){
-        //dataTemplate.show
     }
 }

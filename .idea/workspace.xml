@@ -5,14 +5,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project/DataTemplate.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/DataTemplate.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project/Elections2018.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/Elections2018.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/FireStation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/FireStation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/Extractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/Extractor.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project/MenuInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/MenuInterface.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project/NoiseRequests.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/NoiseRequests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project/TotalTracker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project/TotalTracker.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Elections2018.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Elections2018.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FireStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FireStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Extractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Extractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/JSONContructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/JSONContructor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MenuInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MenuInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/NoiseRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NoiseRequests.java" afterDir="false" />
     </list>
@@ -95,7 +95,13 @@
       <workItem from="1596138106270" duration="860000" />
       <workItem from="1596480085064" duration="9751000" />
       <workItem from="1596565809695" duration="11520000" />
-      <workItem from="1596847046623" duration="421000" />
+      <workItem from="1596847046623" duration="2681000" />
+      <workItem from="1596909851818" duration="3207000" />
+      <workItem from="1596922372654" duration="6562000" />
+      <workItem from="1597001509295" duration="2684000" />
+      <workItem from="1597183386660" duration="1992000" />
+      <workItem from="1597246671882" duration="5112000" />
+      <workItem from="1597258995229" duration="2355000" />
     </task>
     <servers />
   </component>
@@ -119,22 +125,22 @@
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="422" y="103" key="FileChooserDialogImpl/0.0.1280.690@0.0.1280.690" timestamp="1596482970637" />
-    <state width="1238" height="148" key="GridCell.Tab.0.bottom" timestamp="1596847652130">
+    <state width="1238" height="482" key="GridCell.Tab.0.bottom" timestamp="1597261356458">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="148" key="GridCell.Tab.0.bottom/0.0.1280.690@0.0.1280.690" timestamp="1596847652130" />
-    <state width="1238" height="148" key="GridCell.Tab.0.center" timestamp="1596847652129">
+    <state width="1238" height="482" key="GridCell.Tab.0.bottom/0.0.1280.690@0.0.1280.690" timestamp="1597261356458" />
+    <state width="1238" height="482" key="GridCell.Tab.0.center" timestamp="1597261356457">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="148" key="GridCell.Tab.0.center/0.0.1280.690@0.0.1280.690" timestamp="1596847652129" />
-    <state width="1238" height="148" key="GridCell.Tab.0.left" timestamp="1596847652129">
+    <state width="1238" height="482" key="GridCell.Tab.0.center/0.0.1280.690@0.0.1280.690" timestamp="1597261356457" />
+    <state width="1238" height="482" key="GridCell.Tab.0.left" timestamp="1597261356457">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="148" key="GridCell.Tab.0.left/0.0.1280.690@0.0.1280.690" timestamp="1596847652129" />
-    <state width="1238" height="148" key="GridCell.Tab.0.right" timestamp="1596847652129">
+    <state width="1238" height="482" key="GridCell.Tab.0.left/0.0.1280.690@0.0.1280.690" timestamp="1597261356457" />
+    <state width="1238" height="482" key="GridCell.Tab.0.right" timestamp="1597261356458">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state width="1238" height="148" key="GridCell.Tab.0.right/0.0.1280.690@0.0.1280.690" timestamp="1596847652129" />
+    <state width="1238" height="482" key="GridCell.Tab.0.right/0.0.1280.690@0.0.1280.690" timestamp="1597261356458" />
     <state x="211" y="68" key="RollbackChangesDialog" timestamp="1594853268681">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
@@ -143,13 +149,17 @@
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="-95" y="-1" key="SettingsEditor/0.0.1280.690@0.0.1280.690" timestamp="1596482975452" />
+    <state x="93" y="93" width="1093" height="503" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596910607631">
+      <screen x="0" y="0" width="1280" height="690" />
+    </state>
+    <state x="93" y="93" width="1093" height="503" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.690@0.0.1280.690" timestamp="1596910607631" />
     <state x="299" y="155" key="run.anything.popup" timestamp="1594502666913">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
     <state x="299" y="155" key="run.anything.popup/0.0.1280.690@0.0.1280.690" timestamp="1594502666913" />
-    <state x="307" y="16" width="672" height="678" key="search.everywhere.popup" timestamp="1596488035936">
+    <state x="308" y="17" width="672" height="678" key="search.everywhere.popup" timestamp="1596910486531">
       <screen x="0" y="0" width="1280" height="690" />
     </state>
-    <state x="307" y="16" width="672" height="678" key="search.everywhere.popup/0.0.1280.690@0.0.1280.690" timestamp="1596488035936" />
+    <state x="308" y="17" width="672" height="678" key="search.everywhere.popup/0.0.1280.690@0.0.1280.690" timestamp="1596910486531" />
   </component>
 </project>

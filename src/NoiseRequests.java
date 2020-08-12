@@ -1,4 +1,7 @@
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import java.util.*;
 
 //This class represents the Noise Service Requests database
@@ -12,7 +15,7 @@ public class NoiseRequests extends DataTemplate {
     to go through the entire database and see if it exists
     */
     private ArrayList<String> streets;
-
+    private JSONContructor jsonContructor;
     private Scanner sc;
     //This is just a simple array with all the months in the year that will come in handy for one of the methods
     private String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
@@ -34,6 +37,7 @@ public class NoiseRequests extends DataTemplate {
         //This goes through the HashMap associated to this database, finds the ArrayList associated with the streets in
         //the database,and extracts the unique streets from them
         ArrayList<String> str = dataValues.get("Street");
+        jsonContructor = new JSONContructor();
         for (int i = 0; i < str.size(); i++){
             if (!streets.contains(str.get(i))){
                 streets.add(str.get(i));
@@ -89,15 +93,16 @@ public class NoiseRequests extends DataTemplate {
 
     //This method displays a summary of the noise service requests from the past year
     public void summary(){
-        //Total number of requests
-        System.out.println("In total, there were " + dataValues.get("Service Request Description").size() + " noise service requests");
-        //Breakdown of the number of requests from each ward
-        System.out.println("Here is a brief breakdown of each ward for 2019: ");
-        for (int i = 1 ; i <= 11; i++) getWardResults("method", i); //Pass in each ward and get the results
-        //Breakdown for each month
-        System.out.println("Here is a brief breakdown of each month for 2019: ");
-        for (int i = 1; i <= 12; i++) getMonth("method", i);
-        System.out.println("Here is a brief breakdown of each street for 2019: ");
+        if(userView == true) {
+            //Total number of requests
+            System.out.println("In total, there were " + dataValues.get("Service Request Description").size() + " noise service requests");
+            //Breakdown of the number of requests from each ward
+            System.out.println("Here is a brief breakdown of each ward for 2019: ");
+            for (int i = 1; i <= 11; i++) getWardResults("method", i); //Pass in each ward and get the results
+            //Breakdown for each month
+            System.out.println("Here is a brief breakdown of each month for 2019: ");
+            for (int i = 1; i <= 12; i++) getMonth("method", i);
+            System.out.println("Here is a brief breakdown of each street for 2019: ");
         /*
         Breakdown of each street. The significance of the if statement is that there is actually a couple of requests
         had no street name attached to them (probably since the street name was not reported). If we were to pass in
@@ -105,11 +110,13 @@ public class NoiseRequests extends DataTemplate {
         split by spaces. However, it seems that isEmpty() does not work because the length of the blank street name
         is actually 1, so that's why we have the if statement set up the way we do
          */
-        for (int i = 0; i < streets.size(); i++){
-            if (streets.get(i).length() > 1) getStreet("method", streets.get(i));
+            for (int i = 0; i < streets.size(); i++) {
+                if (streets.get(i).length() > 1) getStreet("method", streets.get(i));
+            }
         }
-
-
+        else{
+            System.out.println("Can not have summery in JSON");
+        }
     }
 
     //This method outputs the results for each ward in the past year
@@ -125,8 +132,18 @@ public class NoiseRequests extends DataTemplate {
         //If the user is the one requesting the data, then there is a little more description to be provided since in
         //this case they will only be requesting that specific ward's data. However, if the request is from a method,
         //then it will be the summary method which requests each ward's data, so the description isn't as much
-        if (requestType.equals("user")) System.out.println("In 2019, there were total " + total + " noise service requests in ward " + ward);
-        else System.out.println("Ward " + ward + ": " + total);
+        if(userView==true) {
+            if (requestType.equals("user"))
+                System.out.println("In 2019, there were total " + total + " noise service requests in ward " + ward);
+            else System.out.println("Ward " + ward + ": " + total);
+        }
+        else{
+            JSONObject mainObject = jsonContructor.createJSONObject();
+            jsonContructor.putJSONObject(mainObject,"Ward", Integer.toString(ward));
+            jsonContructor.putJSONObject(mainObject,"Total", Integer.toString(total));
+            jsonContructor.writeToFile(mainObject, "Ward_Info");
+            System.out.println("JSON file created.");
+        }
     }
 
     //Similar to the previous method, but outputs the results for a month instead of a ward
@@ -138,8 +155,18 @@ public class NoiseRequests extends DataTemplate {
             String[] dateSplit = dates.get(i).split(" ");
             if (dateSplit[0].equals(monthName)) ++total;
         }
-        if (requestType.equals("user")) System.out.println("In 2019, there were " + total + " noise service request in the month of " + monthName);
-        else System.out.println(monthName + ": " + total);
+        if(userView==true) {
+            if (requestType.equals("user"))
+                System.out.println("In 2019, there were " + total + " noise service request in the month of " + monthName);
+            else System.out.println(monthName + ": " + total);
+        }
+        else{
+            JSONObject mainObject = jsonContructor.createJSONObject();
+            jsonContructor.putJSONObject(mainObject,"Month", monthName);
+            jsonContructor.putJSONObject(mainObject,"Total", Integer.toString(total));
+            jsonContructor.writeToFile(mainObject, "Month_Info");
+            System.out.println("JSON file created.");
+        }
     }
 
     /*
@@ -165,8 +192,18 @@ public class NoiseRequests extends DataTemplate {
                 }
             }
         }
-        if (requestType.equals("user")) System.out.println("In 2019, there were total " + total + " noise service requests on " + street);
-        else System.out.println(street + ": "+ total);
+        if(userView==true) {
+            if (requestType.equals("user"))
+                System.out.println("In 2019, there were total " + total + " noise service requests on " + street);
+            else System.out.println(street + ": " + total);
+        }
+        else{
+            JSONObject mainObject = jsonContructor.createJSONObject();
+            jsonContructor.putJSONObject(mainObject,"Street", street);
+            jsonContructor.putJSONObject(mainObject,"Total", Integer.toString(total));
+            jsonContructor.writeToFile(mainObject, "Street_Info");
+            System.out.println("JSON file created.");
+        }
     }
 
     /*
@@ -180,6 +217,9 @@ public class NoiseRequests extends DataTemplate {
      */
     public void getHours(){
         //Use the totalTrackers class to
+        JSONObject mainObject = jsonContructor.createJSONObject();
+        JSONArray arrayObject = jsonContructor.createJSONArray();
+        jsonContructor.putJSONObject(mainObject, arrayObject, "Hours");
         TotalTracker[] totalTrackers = new TotalTracker[24];
         for (int i = 0; i < 24; i++){
             totalTrackers[i] = new TotalTracker(hours[i]);
@@ -200,13 +240,21 @@ public class NoiseRequests extends DataTemplate {
             totalTrackers[Arrays.asList(hours).indexOf(trueTime)].total += 1;
         }
         Arrays.sort(totalTrackers);
-        System.out.println("Here is the breakdown of the noise requests in 2019 by the hour from most to least: ");
+        if(userView == true) System.out.println("Here is the breakdown of the noise requests in 2019 by the hour from most to least: ");
         for (int i = 0; i < 24; i++){
             //If an hour has 0 requests for it, no need to display it, and since the array is sorted, if the current
             //object has 0 requests, then the rest of the objects after it have 0 requests, so we can just break the
             //for loop
+            JSONObject totalTrackerObject = jsonContructor.createJSONObject();
             if (totalTrackers[i].total == 0) break;
-            System.out.println(totalTrackers[i]);
+            if(userView==true) System.out.println(totalTrackers[i]);
+            jsonContructor.putJSONObject(totalTrackerObject, "Time", totalTrackers[i].getName());
+            jsonContructor.putJSONObject(totalTrackerObject, "Total", Integer.toString(totalTrackers[i].getTotal()));
+            jsonContructor.addToJSONArray(arrayObject, totalTrackerObject);
+        }
+        if(userView==false) {
+            jsonContructor.writeToFile(mainObject, "Hour_Info");
+            System.out.println("JSON file created");
         }
     }
 }
@@ -230,6 +278,14 @@ class TotalTracker implements Comparable<TotalTracker>{
         if (this.total > o.total) return -1;
         else if (this.total < o.total) return 1;
         else return 0;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public int getTotal(){
+        return total;
     }
 
     public String toString() {

@@ -13,7 +13,6 @@ public class Extractor {
     public Extractor(String fileName, String workBookName) throws Exception{
         this.fileName = "./" + fileName + ".xlsx";
         this.workBookName = workBookName; //Workbook name may be different for each file
-
         excelInfo = new HashMap<>(); //HashMap key contains column title and values is an ArrayList
         workBook = WorkbookFactory.create(new FileInputStream(this.fileName));
         sheet = workBook.getSheet(this.workBookName);
